@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    font-family:Arial, sans-serif;
+
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1f1c2c);
+    background-size:400% 400%;
+    animation:fondo 10s ease infinite;
+
+    min-height:100vh;
+    padding:30px;
+
+    color:white;
+}
+
+/* FONDO */
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* TITULO */
+h1,h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* LAYOUT */
+.layout{
+    display:grid;
+    grid-template-columns:350px 1fr;
+    gap:30px;
+}
+
+/* PANEL */
+.panel{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+    padding:25px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* INPUTS */
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+
+    border:none;
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.2);
+    color:white;
+}
+
+/* BOTONES */
+button{
+    width:100%;
+    padding:12px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#00c853;
+    color:white;
+
+    font-size:16px;
+    cursor:pointer;
+
+    transition:0.3s;
+
+    margin-top:10px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* BOTONES FORM */
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+/* BUSCADOR */
+#buscar{
+    margin-top:20px;
+}
+
+/* LISTA CLIENTES */
+#lista li{
+    list-style:none;
+
+    background:rgba(255,255,255,0.1);
+
+    padding:12px;
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* PRODUCTOS */
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+
+    border-radius:20px;
+    padding:20px;
+
+    text-align:center;
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+}
+
+.precio{
+    font-size:25px;
+    color:#00e676;
+
+    margin-bottom:15px;
+}
+
+/* VENTAS */
+.ventas{
+    margin-top:40px;
+}
+
+#listaVentas li{
+    list-style:none;
+
+    background:rgba(255,255,255,0.1);
+
+    padding:15px;
+    border-radius:12px;
+
+    margin-bottom:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🛍️ Sistema de Clientes y Tienda</h1>
+
+<div class="layout">
+
+    <!-- CLIENTES -->
+    <div class="panel">
+
+        <h2>📋 Registro de Clientes</h2>
+
+        <form id="formulario">
+
+            <input type="text" id="rut" placeholder="RUT" required>
+
+            <input type="text" id="nombre" placeholder="Nombre Completo" required>
+
+            <input type="text" id="direccion" placeholder="Dirección">
+
+            <input type="tel" id="telefono" placeholder="Teléfono" required>
+
+            <div class="buttons">
+
+                <button type="submit">
+                    Guardar
+                </button>
+
+                <button type="button" id="limpiar">
+                    Limpiar
+                </button>
+
+            </div>
+
+        </form>
+
+        <input type="text" id="buscar" placeholder="🔍 Buscar cliente...">
+
+        <ul id="lista"></ul>
+
+    </div>
+
+    <!-- TIENDA -->
+    <div class="panel">
+
+        <h2>🛒 Tienda de Ropa</h2>
+
+        <div class="productos">
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000">
+
+                <h3>Polera Urbana</h3>
+
+                <div class="precio">$19.990</div>
+
+                <button onclick="comprar('Polera Urbana',19990)">
+                    Comprar
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1000">
+
+                <h3>Pantalón Cargo</h3>
+
+                <div class="precio">$29.990</div>
+
+                <button onclick="comprar('Pantalón Cargo',29990)">
+                    Comprar
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000">
+
+                <h3>Zapatillas Sport</h3>
+
+                <div class="precio">$49.990</div>
+
+                <button onclick="comprar('Zapatillas Sport',49990)">
+                    Comprar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="ventas">
+
+            <h2>💳 Ventas Realizadas</h2>
+
+            <ul id="listaVentas"></ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   CLIENTES
+========================= */
+
+const form = document.getElementById("formulario");
+const lista = document.getElementById("lista");
+const buscador = document.getElementById("buscar");
+const btnLimpiar = document.getElementById("limpiar");
+
+let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+
+renderClientes();
+
+form.addEventListener("submit", guardarCliente);
+
+btnLimpiar.addEventListener("click", () => {
+    form.reset();
+});
+
+buscador.addEventListener("input", (e)=>{
+    renderClientes(e.target.value);
+});
+
+function guardarCliente(e){
+
+    e.preventDefault();
+
+    const cliente = {
+        rut:document.getElementById("rut").value,
+        nombre:document.getElementById("nombre").value,
+        direccion:document.getElementById("direccion").value,
+        telefono:document.getElementById("telefono").value
+    };
+
+    clientes.push(cliente);
+
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+
+    renderClientes();
+
+    form.reset();
+
+    alert("✅ Cliente guardado");
+}
+
+function renderClientes(filtro=""){
+
+    lista.innerHTML = "";
+
+    clientes
+    .filter(c =>
+        c.nombre.toLowerCase().includes(filtro.toLowerCase()) ||
+        c.rut.includes(filtro)
+    )
+    .forEach((c,index)=>{
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            ${c.nombre}
+            <button onclick="eliminarCliente(${index})">
+                ❌
+            </button>
+        `;
+
+        lista.appendChild(li);
+    });
+}
+
+function eliminarCliente(index){
+
+    clientes.splice(index,1);
+
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+
+    renderClientes();
+}
+
+/* =========================
+   TIENDA
+========================= */
+
+const listaVentas = document.getElementById("listaVentas");
+
+let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
+
+mostrarVentas();
+
+function comprar(producto, precio){
+
+    const nombre = prompt("Ingrese su nombre:");
+
+    if(!nombre){
+        alert("Debes ingresar un nombre");
+        return;
+    }
+
+    const tarjeta = prompt("Ingrese número de tarjeta:");
+
+    if(!tarjeta || tarjeta.length < 8){
+        alert("Tarjeta inválida");
+        return;
+    }
+
+    const venta = {
+        producto,
+        precio,
+        cliente:nombre,
+        tarjeta:"**** " + tarjeta.slice(-4)
+    };
+
+    ventas.push(venta);
+
+    localStorage.setItem("ventas", JSON.stringify(ventas));
+
+    mostrarVentas();
+
+    alert("✅ Compra realizada correctamente");
+}
+
+function mostrarVentas(){
+
+    listaVentas.innerHTML = "";
+
+    ventas.forEach(v => {
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <strong>${v.producto}</strong><br>
+            Cliente: ${v.cliente}<br>
+            Precio: $${v.precio}<br>
+            Tarjeta: ${v.tarjeta}
+        `;
+
+        listaVentas.appendChild(li);
+    });
+}
+
+</script>
+
+</body>
+</html>

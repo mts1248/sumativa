@@ -1,0 +1,206 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* FONDO ANIMADO */
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    background: linear-gradient(-45deg, #4facfe, #43e97b, #38f9d7, #6a11cb);
+    background-size: 400% 400%;
+    animation: fondoAnimado 12s ease infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ANIMACIÓN DEL FONDO */
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CONTENEDOR */
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    color: #fff;
+
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* TÍTULO */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* PLACEHOLDER */
+input::placeholder {
+    color: rgba(255,255,255,0.7);
+    opacity: 0.7;
+}
+
+/* EFECTO EN INPUTS */
+input:focus {
+    transform: scale(1.02);
+    transition: 0.2s;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* BOTONES */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* BOTÓN BASE */
+button {
+    position: relative;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    color: white;
+}
+
+/* EFECTO LUZ GIRANDO */
+button::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: conic-gradient(
+        transparent,
+        rgba(255,255,255,0.8),
+        transparent
+    );
+    animation: girar 3s linear infinite;
+}
+
+/* CAPA INTERIOR */
+button::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 10px;
+}
+
+/* GUARDAR */
+button[type="submit"]::after {
+    background: #00c853;
+}
+
+/* LIMPIAR */
+#limpiar::after {
+    background: #d50000;
+}
+
+/* TEXTO */
+button span {
+    position: relative;
+    z-index: 2;
+}
+
+/* HOVER */
+button:hover {
+    transform: scale(1.08);
+    transition: 0.2s;
+}
+
+/* CLICK */
+button:active {
+    transform: scale(0.95);
+}
+
+/* ANIMACIÓN BOTONES */
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* LISTA */
+ul {
+    margin-top: 20px;
+}
+
+/* ITEM */
+li {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+
+    background: rgba(255,255,255,0.2);
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    animation: aparecer 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+/* ANIMACIÓN LISTA */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BOTÓN ELIMINAR */
+li button {
+    background: rgba(255, 0, 0, 0.7);
+    border: none;
+    border-radius: 8px;
+    padding: 5px 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* SCROLL BONITO */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+    border-radius: 10px;
+}
